@@ -1,9 +1,19 @@
 import speech_recognition
+import mysql.connector
 import pyttsx3
+import os
+import flask
+
 
 class mic (BaseException):
     recognizer = speech_recognition.Recognizer()
 
+    mysql.connector.connect(
+            host="localhost",
+            user="root",
+            password="root",
+            database="job_portal"
+        )
     while True:
         try:
         
