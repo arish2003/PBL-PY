@@ -151,6 +151,13 @@ def show_applications(jobid):
     applications = Application.query.filter_by(job_id=jobid).order_by(Application.degree, Application.experience.desc()).all()
     return render_template('show_applications.html', applications=applications, Random_Review=Random_Review)
 
+@app.route("/meeting/<application_id>")
+@login_required
+def meeting(application_id):
+    applicant_id = Application.query.get(int(application_id)).user_id
+    applicant = User.query.get(applicant_id)
+    return render_template('meeting.html', applicant=applicant, Random_Review=Random_Review)
+
 @app.route("/")
 @app.route("/show_jobs")
 def show_jobs():
